@@ -1,0 +1,17 @@
+# Constructs
+
+Constructs enhance various aspects of Java programming by providing specific functionalities or facilitating certain programming practices.
+
+## List of Constructs
+* Enum
+* Annotations
+* Record Classes
+* Sealed Classes
+* Module Classes
+* Wrapper Classes
+* Utility Classes
+* Abstract Classes
+* Nested/Inner Classes
+* Marker Interfaces
+* Local Classes
+* Anonymous Classes
