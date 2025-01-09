@@ -1,5 +1,9 @@
 package com.developer.java.custom;
 
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+
+@Getter
 public enum WorldCapital {
   KABUL("Kabul", "Afghanistan"),
   TIRANA("Tirana", "Albania"),
@@ -203,20 +207,8 @@ public enum WorldCapital {
     this.countryName = countryName;
   }
 
-  public String getCapitalName() {
-    return capitalName;
-  }
-
-  public String getCountryName() {
-    return countryName;
-  }
-
-  public WorldCapital getWorldCapital() {
-    return this;
-  }
-
   @Override
-  public String toString() {
+  public @NotNull String toString() {
     return capitalName + " is the capital of " + countryName + "\n";
   }
 }

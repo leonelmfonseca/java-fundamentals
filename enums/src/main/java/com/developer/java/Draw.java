@@ -1,13 +1,15 @@
 package com.developer.java;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Set;
 
 public interface Draw {
-  PlayingCard getRandomCard();
+  @Nullable PlayingCard getRandomCard();
 
-  PlayingCard getTopCard();
+  @Nullable PlayingCard getTopCard();
 
-  PlayingCard getBottomCard();
+  @Nullable PlayingCard getBottomCard();
 
   Set<PlayingCard> drawCards(int numberOfCards, DeckDrawPosition position);
 }

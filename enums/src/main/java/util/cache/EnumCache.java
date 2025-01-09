@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 public class EnumCache<K, V> {
 
@@ -23,18 +24,15 @@ public class EnumCache<K, V> {
    - Partial Updates Without Blocking
    */
   @Getter private final Map<K, V> cache = new ConcurrentHashMap<>();
-  @Getter private final Iterable<V> enumConstants;
+  @Getter private final @NotNull Iterable<V> enumConstants;
 
   // keyExtractor received V and returns K
   // keyExtractor is a method referenced, meaning that EnumCache will receive the behaviour through
   // parameter
-  private final Function<V, K> keyExtractor;
+  private final @NotNull Function<V, K> keyExtractor;
 
-  public EnumCache(Iterable<V> enumConstants, Function<V, K> keyExtractor) {
-    if (enumConstants == null || keyExtractor == null) {
-      throw new IllegalArgumentException("Arguments cannot be null");
-    }
-    this.enumConstants = enumConstants;
+  public EnumCache(@NotNull Iterable<V> enumConstants, @NotNull Function<V, K> keyExtractor) {
+     this.enumConstants = enumConstants;
     this.keyExtractor = keyExtractor;
     this.populateCache();
   }

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @Getter
 public class Deck implements Draw {
@@ -31,21 +33,21 @@ public class Deck implements Draw {
   }
 
   @Override
-  public PlayingCard getRandomCard() {
+  public @Nullable PlayingCard getRandomCard() {
     PlayingCard card = currentDeck.stream().findAny().orElse(null);
     currentDeck.remove(card);
     return card;
   }
 
   @Override
-  public PlayingCard getTopCard() {
+  public @Nullable PlayingCard getTopCard() {
     PlayingCard card = currentDeck.stream().findFirst().orElse(null);
     currentDeck.remove(card);
     return card;
   }
 
   @Override
-  public PlayingCard getBottomCard() {
+  public @Nullable PlayingCard getBottomCard() {
     return currentDeck.stream()
         .collect(
             Collectors.collectingAndThen(
@@ -59,23 +61,20 @@ public class Deck implements Draw {
   }
 
   @Override
-  public Set<PlayingCard> drawCards(int numberOfCards, DeckDrawPosition position) {
+  public @NotNull Set<PlayingCard> drawCards(int numberOfCards, @NotNull DeckDrawPosition position) {
     return IntStream.range(0, numberOfCards)
         .mapToObj(i -> drawCardByPosition(position))
         .filter(Objects::nonNull)
         .collect(Collectors.toSet());
   }
 
-  private PlayingCard drawCardByPosition(DeckDrawPosition position) {
-    switch (position) {
-      case MIDDLE:
-        return getRandomCard();
-      case TOP:
-        return getTopCard();
-      case BOTTOM:
-        return getBottomCard();
-      default:
-        throw new IllegalArgumentException("Invalid position: " + position);
-    }
+  private PlayingCard drawCardByPosition(@NotNull DeckDrawPosition position) {
+    return switch (position) {
+      case MIDDLE -> getRandomCard();
+      case TOP -> getTopCard();
+      case BOTTOM -> getBottomCard();
+      default -> throw new IllegalArgumentException("Invalid position: " + position);
+    };
   }
+
 }
