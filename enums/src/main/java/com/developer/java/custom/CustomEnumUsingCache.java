@@ -11,10 +11,10 @@ Be wise when choosing the best approach for your use case.
 */
 public class CustomEnumUsingCache {
 
-  static Iterable<WorldCapital> worldCapitalList = List.of(WorldCapital.values());
+   static final Iterable<WorldCapital> worldCapitalList = List.of(WorldCapital.values());
 
-  // TODO
-  static EnumCache<String, WorldCapital> cacheFromList =
+
+  static final EnumCache<String, WorldCapital> cacheFromList =
       new EnumCache<>(worldCapitalList, WorldCapital::getCountryName);
 
   public static void main(String[] args) {
