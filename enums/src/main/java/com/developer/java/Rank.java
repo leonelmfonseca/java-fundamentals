@@ -15,8 +15,8 @@ public enum Rank {
   QUEEN("Queen", "Q"),
   KING("Kings", "K");
 
-  private String terminology;
-  private String symbol;
+  private final String terminology;
+  private final String symbol;
 
   Rank(String terminology, String symbol) {
     this.terminology = terminology;
